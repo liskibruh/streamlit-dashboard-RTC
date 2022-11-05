@@ -9,7 +9,7 @@ from PIL import Image
 #APP_SUB_TITLE='Source: xyz'
 
 def display_accidents_count(df, year, severity_status, accident_severity, metric_title):
-    df=df[(df['Year_x']== year)]
+    df=df[(df['Year']== year)]
     if severity_status:
         df=df[df['Accident_Severity']==severity_status]
         df.drop_duplicates(inplace=True)
@@ -17,7 +17,7 @@ def display_accidents_count(df, year, severity_status, accident_severity, metric
         st.metric(metric_title,'{:,}'.format(total))
 
 def display_casualties_count(df, year, severity_status, no_of_casualties, metric_title):
-    df=df[(df['Year_x']== year)]
+    df=df[(df['Year']== year)]
     if severity_status:
         df=df[df['Accident_Severity']==severity_status]
         df.drop_duplicates(inplace=True)
@@ -25,7 +25,7 @@ def display_casualties_count(df, year, severity_status, no_of_casualties, metric
         st.metric(metric_title,'{:,}'.format(total))
 
 def display_map(df,year,severity_status):
-    df=df[df['Year_x']==year]
+    df=df[df['Year']==year]
     #map=folium.Map(location=[51.509865, -0.118092],zoom_start=20,scrollWheelZoom=False)#, tiles='CartoDB positron')
     if severity_status:
         df=df[df['Accident_Severity']==severity_status]
@@ -70,7 +70,7 @@ def main():
     st.markdown("<h1 style='text-align: center; color: #3a469d;'>Predicting RTC severity using Machine Learning</h1>", unsafe_allow_html=True)
     st.write('Over the last few years improvements to roads in the UK have been implemented across the country in order to create a safer roading system with some great effect.  \nThe number of **road traffic collisions** are reported to be in decline.  \nUsing datasets from the Department of Transport, we hope to be able to uncover the probability of the severity of a collision.')
     ## DATA
-    df=pd.read_parquet('data/accident_data_complete1.parquet')
+    df=pd.read_csv('data/accident_data_complete1.csv')
     year=2006
     severity_status=2
     #accident_severity='Accident_Severity'  
@@ -83,12 +83,12 @@ def main():
         )
 
     if selected=='Accidents':
-        year_list=list(df['Year_x'].unique())
+        year_list=list(df['Year'].unique())
         year_list.sort()
         year=st.sidebar.selectbox('Year_x',year_list,len(year_list)-1)
         severity_status=st.sidebar.radio('Severity Status', [1,2])
         #st.write(year_list)
-        st.subheader(f'Year_x: {year}') 
+        st.subheader(f'Year: {year}') 
         st.subheader(f'Severity Status: {severity_status}')
         #st.subheader('Road Accidents Facts')
         col1,col2=st.columns(2)
