@@ -86,7 +86,7 @@ def main():
         st.image(headerimg_url)
     # st.title(APP_TITLE)
     st.markdown(
-        "<h1 style='text-align: center; color: #3a469d;'>Predicting RTC severity using Machine Learning</h1>",
+        "<h1 style='text-align:center; color: #3a469d;'>Predicting RTC severity using Machine Learning</h1>",
         unsafe_allow_html=True
     )
     st.write('Over the last few years improvements to roads in the UK have been implemented across the country in order to create a safer roading system with some great effect.  \nThe number of **road traffic collisions** are reported to be in decline.  \nUsing datasets from the Department of Transport, we hope to be able to uncover the probability of the severity of a collision.')
