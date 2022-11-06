@@ -35,7 +35,7 @@ def display_map(df,year,severity_status):
     #    columns=([['Latitude', 'Longitude']],'Number_of_Casualties')
     #)
     #choropleth.geojson.add_to(map)
-    
+
     #st_map=st_folium(map, width=700, height=450)
         dfmap=df[["Latitude","Longitude"]]
         dfmap= dfmap.rename(columns={'Latitude': 'lat', 'Longitude': 'lon'})
