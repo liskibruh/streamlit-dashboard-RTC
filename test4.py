@@ -33,7 +33,10 @@ def display_casualties_count(
 
 def display_map(df, year, severity_status):
     df = df[df['Year'] == year]
-    # map=folium.Map(location=[51.509865, -0.118092],zoom_start=20,scrollWheelZoom=False)#, tiles='CartoDB positron')
+    # map = folium.Map(
+    # location = [51.509865, -0.118092],
+    # zoom_start = 20,scrollWheelZoom=False)#, tiles='CartoDB positron'
+    # )
     if severity_status:
         df = df[df['Accident_Severity'] == severity_status]
     # choropleth=folium.Choropleth(
@@ -47,7 +50,7 @@ def display_map(df, year, severity_status):
         dfmap = df[["Latitude", "Longitude"]]
         dfmap = dfmap.rename(columns={'Latitude': 'lat', 'Longitude': 'lon'})
     # st.write(dfmap)
-    st.map(dfmap, zoom=5)
+    st.map(dfmap, zoom=4)
 
 
 def main():
@@ -95,13 +98,14 @@ def main():
     if selected == 'Accidents':
         year_list = list(df['Year'].unique())
         year_list.sort()
-        year=st.sidebar.selectbox('Year_x', year_list, len(year_list) -1)
+        year = st.sidebar.selectbox('Year_x', year_list, len(year_list) -1)
         severity_status = st.sidebar.radio('Severity Status', [1, 2])
-        #st.write(year_list)
+        # st.write(year_list)
         st.subheader(f'Year: {year}')
         st.subheader(f'Severity Status: {severity_status}')
-        #st.subheader('Road Accidents Facts')
-        col1,col2 = st.columns(2)
+        # st.subheader('Road Accidents Facts')
+
+        col1, col2, col3 = st.columns(3)
         with col1:
             display_accidents_count(
                 df, year, severity_status,
@@ -113,14 +117,19 @@ def main():
                 'Number_of_Casualties',
                 f'# of {severity_status} Accidents Casualties'
                 )
+        with col3:
+            st.write('Add Vehicle count Here')
+
+        col1, col2 = st.columns(2)
+        with col1:
+            display_map(df, year, severity_status)
+        with col2:
+            st.write('Add another metric or visual')
 
 
-        display_map(df,year,severity_status)
-
-
-    # st.write(df.sample(20))
-    # st.write(df.shape)
-    # st.write(df.columns)
+# st.write(df.sample(20))
+# st.write(df.shape)
+# st.write(df.columns)
 
 
 if __name__ == "__main__":
