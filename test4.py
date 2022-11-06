@@ -68,7 +68,9 @@ def main():
     gap: 10px;
     }
     .css-1dp5vir.e8zbici1 {
-    background-image: linear-gradient(90deg, rgb(130 166 192), rgb(74 189 130));
+    background-image: linear-gradient(
+        90deg, rgb(130 166 192), rgb(74 189 130)
+        );
     }
     </style>
     """,
@@ -83,25 +85,28 @@ def main():
     with col2:
         st.image(headerimg_url)
     # st.title(APP_TITLE)
-    st.markdown("<h1 style='text-align: center; color: #3a469d;'>Predicting RTC severity using Machine Learning</h1>", unsafe_allow_html=True)
+    st.markdown(
+        "<h1 style='text-align: center; color: #3a469d;'>Predicting RTC severity using Machine Learning</h1>",
+        unsafe_allow_html=True
+    )
     st.write('Over the last few years improvements to roads in the UK have been implemented across the country in order to create a safer roading system with some great effect.  \nThe number of **road traffic collisions** are reported to be in decline.  \nUsing datasets from the Department of Transport, we hope to be able to uncover the probability of the severity of a collision.')
-    ## DATA
+    # DATA
     df = pd.read_csv('accident_data_complete1.csv')
     year = 2006
     severity_status = 2
-    #accident_severity='Accident_Severity'
-    #metric_title=f'# of {severity_status} Accidents'
+    # accident_severity='Accident_Severity'
+    # metric_title=f'# of {severity_status} Accidents'
 
     with st.sidebar:
-        selected=option_menu(
+        selected = option_menu(
             menu_title="Main Menu",
-            options=['Accidents','Visualizations', 'About']
+            options=['Accidents', 'Visualizations', 'About']
         )
 
     if selected == 'Accidents':
         year_list = list(df['Year'].unique())
         year_list.sort()
-        year = st.sidebar.selectbox('Year_x', year_list, len(year_list) -1)
+        year = st.sidebar.selectbox('Year', year_list, len(year_list) -1)
         severity_status = st.sidebar.radio('Severity Status', [1, 2])
         # st.write(year_list)
         st.subheader(f'Year: {year}')
