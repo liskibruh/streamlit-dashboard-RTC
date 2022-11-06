@@ -67,6 +67,9 @@ def main():
     .css-tw2vp1.e1tzin5v0 {
     gap: 10px;
     }
+    .css-1dp5vir.e8zbici1 {
+    background-image: linear-gradient(90deg, rgb(130 166 192), rgb(74 189 130));
+    }
     </style>
     """,
     unsafe_allow_html=True
