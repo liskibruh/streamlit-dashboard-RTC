@@ -58,7 +58,7 @@ def map_rtc(data, year, pforce, severity):
     <b>Casualties: </b> %s <br />
     <b>Vehicles: </b> %s
     '''
-    map = flm.Map(location=[lat[1], lon[1]], zoom_start=10, scrollWheelZoom=False)
+    map = flm.Map(location=[lat[0], lon[0]], zoom_start=10, scrollWheelZoom=False)
 
     fg = flm.FeatureGroup(name='My V Map')
 
