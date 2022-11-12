@@ -118,7 +118,7 @@ def map_rtc(data, year, pforce, severity):
             flm.CircleMarker(
                 location=[lt, ln], popup=(popup),
                 fill_color=color_producer(st), color='None',
-                radius=15, fill_opacity=0.7
+                radius=7, fill_opacity=0.7
             )
         )
         map.add_child(fg)
