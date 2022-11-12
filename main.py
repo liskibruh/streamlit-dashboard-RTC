@@ -195,7 +195,7 @@ def main():
     df = get_data(url)
     year = 2006
     severity_status = 'Serious'
-
+    # st.write(df[(df['Date'] == '2016-10-13') & (df['Police_Force'] == 'Thames Valley')])
     # st.write(df.sample(1))
     # st.write(df['Date'])
     # st.write(len(df['Police_Force'].unique()))
