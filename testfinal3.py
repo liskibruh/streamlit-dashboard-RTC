@@ -78,14 +78,14 @@ def map_rtc(data, year, pforce, severity):
     <b>Casualties: </b> %s <br />
     <b>Vehicles: </b> %s
     '''
-    map = flm.Map(location=[lat[0], lon[0]], zoom_start=10, scrollWheelZoom=False)
+    map = flm.Map(location=[lat[0], lon[0]], zoom_start=9.5, scrollWheelZoom=False)
 
     fg = flm.FeatureGroup(name='My V Map')
 
     for lt, ln, nm, st, ca, ve in zip((lat), (lon), (nam), (sev), (cas), (veh)):
         iframe = flm.IFrame(html = html % ((nm), (st), (ca), (ve)), height = 165)
         popup = flm.Popup(iframe, min_width=200, max_width=500)
-        fg.add_child(flm.CircleMarker(location = [lt, ln], popup = (popup), fill_color=color_producer(st), color='None', radius=15, fill_opacity = 0.7))
+        fg.add_child(flm.CircleMarker(location = [lt, ln], popup = (popup), fill_color=color_producer(st), color='None', radius=7, fill_opacity = 0.7))
         map.add_child(fg)
 
     st_map = st_folium(map, width=1600)
@@ -199,7 +199,7 @@ def main():
   
 
         images=[image4,image5,image6,image7]
-        titles=['By Year', 'By Month', 'By Quarter', 'By Hours']
+        titles=['By Years', 'By Months of Year', 'By Quarters of Year', 'By Hours of Day']
 
         for title,image in zip(titles,images):
             st.subheader(title)
